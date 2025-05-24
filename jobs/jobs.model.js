@@ -27,7 +27,7 @@ const jobSchema = new mongoose.Schema({
     },
     mode: {
         type: String,
-        enum: ['onsite', 'remote'],
+        enum: ['onsite', 'remote', 'hybrid'],
         required: true
     },
     experience: {

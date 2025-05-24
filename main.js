@@ -10,8 +10,14 @@ const port = process.env.PORT || 3000;
 
 database.connectDB();
 
+app.use(express.json()); // parse json body
+
 app.get('/', (req, res) => {
     res.send('Jobs Apis');
+});
+
+app.get('/health', (req, res) => {
+    res.send('OK');
 });
 
 app.use('/api/v1/jobs', jobsRouter);
