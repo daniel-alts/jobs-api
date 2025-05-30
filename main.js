@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const database = require('./config/database');
 const jobsRouter = require('./jobs/jobs.router');
+const usersRouter = require('./users/users.router');
+const { AuthorizeUser } = require('./users/users.middleware');
 
 dotenv.config();
 
@@ -20,6 +22,7 @@ app.get('/health', (req, res) => {
     res.send('OK');
 });
 
+app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/jobs', jobsRouter);
 
 app.listen(port, () => {
