@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('./users.model');
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+  return jwt.sign({ id }, process.env.JWT_SECRET || 'test_secret', { expiresIn: '1d' });
 };
 
 const CreateUser = async ({ name, email, password }) => {
@@ -17,7 +17,7 @@ const CreateUser = async ({ name, email, password }) => {
 
   const token = generateToken(user._id);
 
-  return { status: 201, success: true, data: {user, token},};
+  return { status: 201, success: true, data: {user, token },};
 };
 
 const LoginUser = async ({ email, password }) => {
